@@ -1,17 +1,15 @@
 public class Calculate {
 
-static void calc (int firstParam, int secondParam){
+static int calc (int firstParam, int secondParam) {//Calculate
     int sign = DataParse.getSign();
-    switch (sign) {
-        case 1: System.out.println(firstParam + secondParam);
-            break;
-        case 2: System.out.println(firstParam - secondParam);
-            break;
-        case 3: System.out.println(firstParam * secondParam);
-            break;
-        case 4: System.out.println(firstParam / secondParam);
-            break;
-        default: break;
-    }
+    if (sign == 1){return (firstParam + secondParam);}
+    else if (sign == 2){return (firstParam - secondParam);}
+    else if (sign == 3){return (firstParam * secondParam);}
+    else if (sign == 4){return (firstParam / secondParam);}
+    else return firstParam;
 }
+
+    public static void printResult (String result) {//result demonstration
+        System.out.println(result);
+    }
 }

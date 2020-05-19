@@ -1,5 +1,8 @@
-import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 class DataParse {
     private static String[] signs = {"+", "-", "*", "/"};
@@ -39,6 +42,32 @@ class DataParse {
             }
         }
         return tempFlag = 11;
+    }
+
+    enum RomanNumeral {//part of "arabicToRoman" converter
+        I(1), IV(4), V(5), IX(9), X(10), XL(40), L(50), XC(90), C(100);
+        private int val;
+        RomanNumeral(int val) {this.val = val;}
+        public int getValue() {return val;}
+
+        public static List<RomanNumeral> getReverseSortedValues() {
+            return Arrays.stream(values()).sorted(Comparator.comparing((RomanNumeral e) -> e.val).reversed())
+                    .collect(Collectors.toList());
+        }
+    }
+
+    public static String arabicToRoman(int number) {
+        List<RomanNumeral> romanNumerals = RomanNumeral.getReverseSortedValues();
+        int temp = 0;
+        StringBuilder sb = new StringBuilder();//StringBuilder because it uses less memory
+        while ((number > 0) && (temp < romanNumerals.size())) {
+            RomanNumeral currentSymbol = romanNumerals.get(temp);
+            if (currentSymbol.getValue() <= number) {
+                sb.append(currentSymbol.name());
+                number -= currentSymbol.getValue();
+            } else { temp++; }
+        }
+        return sb.toString();
     }
 
     static int arabicCheck(String tempArabic) {//arabic digits checking
