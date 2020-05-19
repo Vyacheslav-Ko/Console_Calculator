@@ -1,2 +1,2 @@
 # Console_Calculator
-# Метод main находится в ConsoleCalculator. ТЗ тут - https://jm-program.github.io/task-calculator.
+# Method main - src/ConsoleCalculator.java. Technical specification - https://jm-program.github.io/task-calculator.
