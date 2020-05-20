@@ -14,16 +14,16 @@ public class ConsoleCalculator {
         boolean signCorrect = DataParse.signsCheck(tokens[1]);//check sign corrrectness
         int romanTemp1 = DataParse.romanCheck(tokens[0]);//roman digits parsing
         int romanTemp2 = DataParse.romanCheck(tokens[2]);
-        if (signCorrect & (romanTemp1 < 11) & (romanTemp2 < 11)) {
+        if (signCorrect & (romanTemp1 < 11) & (romanTemp2 < 11)) {//roman part
             int resultArabic1 = Calculate.calc(romanTemp1, romanTemp2);
             String romanResult = DataParse.arabicToRoman(resultArabic1);
             Calculate.printResult(romanResult);
-        } else if (signCorrect & DataParse.arabicCheck(tokens[0]) < 11 & DataParse.arabicCheck(tokens[2]) < 11) {
+        } else if (signCorrect & DataParse.arabicCheck(tokens[0]) < 11 & DataParse.arabicCheck(tokens[2]) < 11) {//arabic part
             int resultArabic2 = Calculate.calc(DataParse.arabicCheck(tokens[0]), DataParse.arabicCheck(tokens[2]));
             Calculate.printResult(String.valueOf(resultArabic2));
         } else {
-            System.out.println("Введенные данные некорректны");
-            throw new NumberFormatException();
+            System.out.println("Введенные данные некорректны");//wrong user input part
+            throw new DataFormatException();
         }
     }
 }
