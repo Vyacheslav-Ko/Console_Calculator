@@ -9,6 +9,17 @@ class DataParse {
     static String[] romanDigits = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
     static int sign;
     static int tempFlag;
+    enum RomanNum {//part of "arabicToRoman" converter
+        I(1), IV(4), V(5), IX(9), X(10), XL(40), L(50), XC(90), C(100);
+        private int val;
+        RomanNum(int val) {this.val = val;}
+        public int getVal() {return val;}
+
+        public static List<RomanNum> getReverseSortedValues() {
+            return Arrays.stream(values()).sorted(Comparator.comparing((RomanNum e) -> e.val).reversed())
+                    .collect(Collectors.toList());
+        }
+    }
 
     static String[] userInput(){//get user data
         System.out.println("Введите данные для вычисления. Допустимо использование римских, либо арабских чисел в диапазоне от 1 до 10, а также знаков + - / *.");
@@ -44,17 +55,6 @@ class DataParse {
         return tempFlag = 11;
     }
 
-    enum RomanNum {//part of "arabicToRoman" converter
-        I(1), IV(4), V(5), IX(9), X(10), XL(40), L(50), XC(90), C(100);
-        private int val;
-        RomanNum(int val) {this.val = val;}
-        public int getVal() {return val;}
-
-        public static List<RomanNum> getReverseSortedValues() {
-            return Arrays.stream(values()).sorted(Comparator.comparing((RomanNum e) -> e.val).reversed())
-                    .collect(Collectors.toList());
-        }
-    }
     public static String arabicToRoman(int number) {//part of "arabicToRoman" converter
         List<RomanNum> romanNumerals = RomanNum.getReverseSortedValues();
         int temp = 0;
