@@ -44,27 +44,26 @@ class DataParse {
         return tempFlag = 11;
     }
 
-    enum RomanNumeral {//part of "arabicToRoman" converter
+    enum RomanNum {//part of "arabicToRoman" converter
         I(1), IV(4), V(5), IX(9), X(10), XL(40), L(50), XC(90), C(100);
         private int val;
-        RomanNumeral(int val) {this.val = val;}
-        public int getValue() {return val;}
+        RomanNum(int val) {this.val = val;}
+        public int getVal() {return val;}
 
-        public static List<RomanNumeral> getReverseSortedValues() {
-            return Arrays.stream(values()).sorted(Comparator.comparing((RomanNumeral e) -> e.val).reversed())
+        public static List<RomanNum> getReverseSortedValues() {
+            return Arrays.stream(values()).sorted(Comparator.comparing((RomanNum e) -> e.val).reversed())
                     .collect(Collectors.toList());
         }
     }
-
-    public static String arabicToRoman(int number) {
-        List<RomanNumeral> romanNumerals = RomanNumeral.getReverseSortedValues();
+    public static String arabicToRoman(int number) {//part of "arabicToRoman" converter
+        List<RomanNum> romanNumerals = RomanNum.getReverseSortedValues();
         int temp = 0;
         StringBuilder sb = new StringBuilder();//StringBuilder because it uses less memory
         while ((number > 0) && (temp < romanNumerals.size())) {
-            RomanNumeral currentSymbol = romanNumerals.get(temp);
-            if (currentSymbol.getValue() <= number) {
+            RomanNum currentSymbol = romanNumerals.get(temp);
+            if (currentSymbol.getVal() <= number) {
                 sb.append(currentSymbol.name());
-                number -= currentSymbol.getValue();
+                number -= currentSymbol.getVal();
             } else { temp++; }
         }
         return sb.toString();

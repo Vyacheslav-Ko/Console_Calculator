@@ -5,8 +5,7 @@ static int calc (int firstParam, int secondParam) {//Calculate
     if (sign == 1){return (firstParam + secondParam);}
     else if (sign == 2){return (firstParam - secondParam);}
     else if (sign == 3){return (firstParam * secondParam);}
-    else if (sign == 4){return (firstParam / secondParam);}
-    else return firstParam;
+    else return (firstParam / secondParam);
 }
 
     public static void printResult (String result) {//result demonstration
